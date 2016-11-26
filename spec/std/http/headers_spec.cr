@@ -125,7 +125,7 @@ describe HTTP::Headers do
 
   it "does to_s" do
     headers = HTTP::Headers{"Foo_quux" => "bar", "Baz-Quux" => ["a", "b"]}
-    headers.to_s.should eq(%(HTTP::Headers{"Foo_quux" => "bar", "Baz-Quux" => ["a", "b"]}))
+    headers.to_s.should eq(%(HTTP::Headers{"Foo_quux"=>"bar", "Baz-Quux"=>["a", "b"]}))
   end
 
   it "merges and return self" do

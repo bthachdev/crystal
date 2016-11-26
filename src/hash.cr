@@ -740,13 +740,29 @@ class Hash(K, V)
       each do |key, value|
         io << ", " if found_one
         key.inspect(io)
-        io << " => "
+        io << "=>"
         value.inspect(io)
         found_one = true
       end
       io << "}"
     end
     io << "{...}" unless executed
+  end
+
+  def pretty_print(pp) : Nil
+    executed = exec_recursive(:pretty_print) do
+      pp.list("{", self, "}") do |key, value|
+        pp.group do
+          key.pretty_print(pp)
+          pp.text "=>"
+          pp.nest do
+            pp.breakable ""
+            value.pretty_print(pp)
+          end
+        end
+      end
+    end
+    pp.text "{...}" unless executed
   end
 
   # Returns self.

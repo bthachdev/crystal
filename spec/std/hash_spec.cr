@@ -279,12 +279,12 @@ describe "Hash" do
   end
 
   describe "to_s" do
-    assert { {1 => 2, 3 => 4}.to_s.should eq("{1 => 2, 3 => 4}") }
+    assert { {1 => 2, 3 => 4}.to_s.should eq("{1=>2, 3=>4}") }
 
     assert do
       h = {} of RecursiveHash => RecursiveHash
       h[h] = h
-      h.to_s.should eq("{{...} => {...}}")
+      h.to_s.should eq("{{...}=>{...}}")
     end
   end
 
